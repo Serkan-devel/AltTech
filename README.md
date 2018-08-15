@@ -2,7 +2,8 @@
 
 ## Examples
 
-```def JsonPrint(js):
+```
+def JsonPrint(js):
     print(json.dumps(js, indent=4, sort_keys=True))
 
 minds = MindsAPI('zippypippytippy','Obama08*')
