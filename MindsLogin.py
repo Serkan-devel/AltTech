@@ -1,4 +1,3 @@
-import sys
 import requests
 import json
 
@@ -41,9 +40,6 @@ def JsonPrint(js):
 
 minds = MindsAPI('zippypippytippy','Obama08*')
 minds.login()
-
-#j = minds.GetNotifications()
-#JsonPrint(j)
 
 j = minds.GetChannel('UndeadMockingbird')
 print('View count:', j['channel']['impressions'])
