@@ -23,3 +23,4 @@ j = minds.PostCustom(
     'https://www.noao.edu/image_gallery/images/d4/J1337-29_crop1-1000.jpg').json()
 print('https://www.minds.com/newsfeed/'+ j['guid'] +'\n')
 ```
+s
