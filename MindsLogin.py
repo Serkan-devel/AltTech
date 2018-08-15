@@ -2,6 +2,19 @@ import requests
 import json
 
 class MindsAPI:
+    DefaultPost = {
+        "wire_threshold": "",
+        "message": "",
+        "is_rich": 1,
+        "title": "",
+        "description": "",
+        "thumbnail": "",
+        "url": "",
+        "attachment_guid": "",
+        "mature": 0,
+        "access_id": 2
+    }
+
     def __init__(self, username, password):
         self.username = username
         self.password = password
@@ -10,37 +23,53 @@ class MindsAPI:
         loginUrl = 'https://www.minds.com/api/v1/authenticate'
         self.client = requests.session()
         self.client.get(loginUrl)
+        c = self.client.cookies
         headers = {
-            'cookie': 'loggedin=1; minds='+ self.client.cookies['minds'] +'; XSRF-TOKEN='+ self.client.cookies['XSRF-TOKEN'],
-            'x-xsrf-token': self.client.cookies['XSRF-TOKEN']
+            'cookie': 'loggedin=1; minds='+ c['minds'] +'; XSRF-TOKEN='+ c['XSRF-TOKEN'],
+            'x-xsrf-token': c['XSRF-TOKEN']
         }
         loginData = {
             'username' : self.username,
             'password' : self.password,
-            'x-xsrf-token' : self.client.cookies['XSRF-TOKEN']
+            'x-xsrf-token' : c['XSRF-TOKEN']
         }
         r = self.client.post(loginUrl, data = loginData, headers = headers)
-        #print(r.content)
-
-        self.headers = {
-            'cookie': 'loggedin=1; minds='+ self.client.cookies['minds'] +'; XSRF-TOKEN='+ self.client.cookies['XSRF-TOKEN'],
-            'x-xsrf-token': self.client.cookies['XSRF-TOKEN']
+        c = self.client.cookies
+        self.client.headers = {
+            'cookie': 'loggedin=1; minds='+ c['minds'] +'; XSRF-TOKEN='+ c['XSRF-TOKEN'],
+            'x-xsrf-token': c['XSRF-TOKEN']
         }
 
     def GetNotifications(self):
-        r = self.client.get('https://www.minds.com/api/v1/notifications/all', headers = self.headers)
-        return json.loads(r.content)
+        return self.client.get('https://www.minds.com/api/v1/notifications/all')
 
     def GetChannel(self, channelName):
-        r = self.client.get('https://www.minds.com/api/v1/channel/'+ channelName, headers = self.headers)
-        return json.loads(r.content)
+        return self.client.get('https://www.minds.com/api/v1/channel/'+ channelName)
 
-def JsonPrint(js):
-    print(json.dumps(js, indent=4, sort_keys=True))
+    def GetPreview(self, url):
+        return self.client.get('https://www.minds.com/api/v1/newsfeed/preview?url='+ url)
 
-minds = MindsAPI('zippypippytippy','Obama08*')
-minds.login()
+    def Post(self, data):
+        return self.client.post('https://www.minds.com/api/v1/newsfeed', data=data)
 
-j = minds.GetChannel('UndeadMockingbird')
-print('View count:', j['channel']['impressions'])
-print('Subscribers:', j['channel']['subscribers_count'])
+    def PostWithPreview(self, url, message):
+        j = self.GetPreview(url).json()
+
+        data = MindsAPI.DefaultPost
+        data['url'] = url
+        data['message'] = message
+        data['description'] = j['meta']['description'] if 'description' in j['meta'] else ""
+        data['title'] = j['meta']['title'] if 'title' in j['meta'] else ""
+        data['thumbnail'] = j['links']['thumbnail'][0]['href'] if 'thumbnail' in j['links'] else ""
+
+        return self.Post(data)
+
+    def PostCustom(self, url, message, description, title, thumbnail):
+        data = MindsAPI.DefaultPost
+        data['url'] = url
+        data['message'] = message
+        data['description'] = description
+        data['title'] = title
+        data['thumbnail'] = thumbnail
+
+        return self.Post(data)
