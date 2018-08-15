@@ -106,9 +106,3 @@ class MindsAPI:
         return self.get_continuation(
             'https://www.minds.com/api/v1/entities/trending/channels?offset=',
             limit)
-
-def json_print(js):
-    print(json.dumps(js, indent = 4, sort_keys = True))
-
-minds = MindsAPI('zippypippytippy','Obama08*')
-minds.login()
