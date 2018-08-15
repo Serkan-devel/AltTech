@@ -6,6 +6,22 @@
 minds = MindsAPI('zippypippytippy','Obama08*')
 minds.login()
 
+groups = minds.get_top_groups(100)
+for g in groups:
+    j = minds.get_group(g['guid']).json()
+    print(g['name'] +': '+ str(j['group']['members:count']))
+
+channels = minds.get_top_channels(100)
+for c in channels:
+    j = minds.get_channel(c['username']).json()
+    subs = str(j['channel']['subscribers_count']) if 'subscribers_count' in j['channel'] else "0"
+    print(c['username'] + ': ' + subs)
+
+groups = minds.get_groups(3)
+for g in groups:
+    j = minds.get_group(g['guid']).json()
+    print(g['name'] +': '+ str(j['group']['members:count']))
+
 j = minds.GetChannel('UndeadMockingbird').json()
 print('View count:', j['channel']['impressions'])
 print('Subscribers:', j['channel']['subscribers_count'])

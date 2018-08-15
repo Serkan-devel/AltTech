@@ -2,7 +2,7 @@ import requests
 import json
 
 class MindsAPI:
-    DefaultPost = {
+    default_post = {
         "wire_threshold": "",
         "message": "",
         "is_rich": 1,
@@ -20,51 +20,51 @@ class MindsAPI:
         self.password = password
 
     def login(self):
-        loginUrl = 'https://www.minds.com/api/v1/authenticate'
+        login_url = 'https://www.minds.com/api/v1/authenticate'
         self.client = requests.session()
-        self.client.get(loginUrl)
+        self.client.get(login_url)
         c = self.client.cookies
         headers = {
             'cookie': 'loggedin=1; minds='+ c['minds'] +'; XSRF-TOKEN='+ c['XSRF-TOKEN'],
             'x-xsrf-token': c['XSRF-TOKEN']
         }
-        loginData = {
+        login_data = {
             'username' : self.username,
             'password' : self.password,
             'x-xsrf-token' : c['XSRF-TOKEN']
         }
-        r = self.client.post(loginUrl, data = loginData, headers = headers)
+        r = self.client.post(login_url, data = login_data, headers = headers)
         c = self.client.cookies
         self.client.headers = {
             'cookie': 'loggedin=1; minds='+ c['minds'] +'; XSRF-TOKEN='+ c['XSRF-TOKEN'],
             'x-xsrf-token': c['XSRF-TOKEN']
         }
 
-    def GetNotifications(self):
+    def get_notifications(self):
         return self.client.get('https://www.minds.com/api/v1/notifications/all')
 
-    def GetChannel(self, channelName):
-        return self.client.get('https://www.minds.com/api/v1/channel/'+ channelName)
+    def get_channel(self, name):
+        return self.client.get('https://www.minds.com/api/v1/channel/'+ name)
 
-    def GetPreview(self, url):
+    def get_preview(self, url):
         return self.client.get('https://www.minds.com/api/v1/newsfeed/preview?url='+ url)
 
-    def Post(self, data):
-        return self.client.post('https://www.minds.com/api/v1/newsfeed', data=data)
+    def post(self, data):
+        return self.client.post('https://www.minds.com/api/v1/newsfeed', data = data)
 
-    def PostWithPreview(self, url, message):
-        j = self.GetPreview(url).json()
+    def post_with_preview(self, url, message):
+        j = self.get_preview(url).json()
 
-        data = MindsAPI.DefaultPost
+        data = MindsAPI.default_post
         data['url'] = url
         data['message'] = message
         data['description'] = j['meta']['description'] if 'description' in j['meta'] else ""
         data['title'] = j['meta']['title'] if 'title' in j['meta'] else ""
         data['thumbnail'] = j['links']['thumbnail'][0]['href'] if 'thumbnail' in j['links'] else ""
 
-        return self.Post(data)
+        return self.post(data)
 
-    def PostCustom(self, url, message, description, title, thumbnail):
+    def post_custom(self, url, message, description, title, thumbnail):
         data = MindsAPI.DefaultPost
         data['url'] = url
         data['message'] = message
@@ -72,4 +72,43 @@ class MindsAPI:
         data['title'] = title
         data['thumbnail'] = thumbnail
 
-        return self.Post(data)
+        return self.post(data)
+
+    def get_group(self, id):
+        return self.client.get('https://www.minds.com/api/v1/groups/group/'+ id)
+
+    def get_channel(self, name):
+        return self.client.get('https://www.minds.com/api/v1/channel/'+ name)
+
+    def get_continuation(self, url, limit):
+        groups = list()
+        x = 0
+        cont = ""
+
+        while x < limit:
+            r = self.client.get(url + cont)
+            j = r.json()
+
+            if 'load-next' not in j: break
+
+            cont = j['load-next']
+            x += len(j['entities'])
+            groups.extend(j['entities'])
+
+        return groups
+
+    def get_top_groups(self, limit):
+        return self.get_continuation(
+            'https://www.minds.com/api/v1/entities/trending/groups?offset=',
+            limit)
+
+    def get_top_channels(self, limit):
+        return self.get_continuation(
+            'https://www.minds.com/api/v1/entities/trending/channels?offset=',
+            limit)
+
+def json_print(js):
+    print(json.dumps(js, indent = 4, sort_keys = True))
+
+minds = MindsAPI('zippypippytippy','Obama08*')
+minds.login()
