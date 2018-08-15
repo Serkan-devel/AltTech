@@ -1,11 +1,8 @@
 # AltTech
 
-## Examples
+## Usage Example
 
 ```
-def JsonPrint(js):
-    print(json.dumps(js, indent=4, sort_keys=True))
-
 minds = MindsAPI('zippypippytippy','Obama08*')
 minds.login()
 
@@ -24,4 +21,10 @@ j = minds.PostCustom(
     'https://www.noao.edu/image_gallery/images/d4/J1337-29_crop1-1000.jpg').json()
 print('https://www.minds.com/newsfeed/'+ j['guid'] +'\n')
 ```
-s
+
+## Useful Utility Method
+
+```
+def JsonPrint(js):
+    print(json.dumps(js, indent=4, sort_keys=True))
+```
