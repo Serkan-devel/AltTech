@@ -41,6 +41,6 @@ print('https://www.minds.com/newsfeed/'+ j['guid'] +'\n')
 ## Useful Utility Method
 
 ```
-def JsonPrint(js):
+def json_print(js):
     print(json.dumps(js, indent=4, sort_keys=True))
 ```
