@@ -22,14 +22,14 @@ for g in groups:
     j = minds.get_group(g['guid']).json()
     print(g['name'] +': '+ str(j['group']['members:count']))
 
-j = minds.GetChannel('UndeadMockingbird').json()
+j = minds.get_channel('UndeadMockingbird').json()
 print('View count:', j['channel']['impressions'])
 print('Subscribers:', j['channel']['subscribers_count'])
 
-j = minds.PostUrl('https://www.youtube.com/watch?v=K9O9yBxrzwM', 'TEST').json()
+j = minds.post_with_preview('https://www.youtube.com/watch?v=K9O9yBxrzwM', 'TEST').json()
 print('https://www.minds.com/newsfeed/'+ j['guid'] +'\n')
 
-j = minds.PostCustom(
+j = minds.post_custom(
     'https://stackoverflow.com/questions/12943819/how-to-prettyprint-a-json-file',
     'MESSAGE',
     'DESCRIPTION',
