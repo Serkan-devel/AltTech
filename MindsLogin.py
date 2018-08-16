@@ -106,3 +106,12 @@ class MindsAPI:
         return self.get_continuation(
             'https://www.minds.com/api/v1/entities/trending/channels?offset=',
             limit)
+
+minds = MindsAPI('zippypippytippy','Obama08*')
+minds.login()
+
+channels = minds.get_top_channels(100)
+for c in channels:
+    j = minds.get_channel(c['username']).json()
+    subs = str(j['channel']['subscribers_count']) if 'subscribers_count' in j['channel'] else "0"
+    print(c['username'] + ': ' + subs)
