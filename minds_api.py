@@ -115,7 +115,7 @@ def json_print(js):
     print(json.dumps(js, indent=4, sort_keys=True))
 
 minds = MindsAPI('zippypippytippy','Obama08*')
-minds.login()
+minds.login() 
 
 j = minds.get_post('876578164342235136').json()
 json_print(j['activity']['impressions'])
