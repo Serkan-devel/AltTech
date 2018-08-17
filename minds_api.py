@@ -111,7 +111,11 @@ class MindsAPI:
             'https://www.minds.com/api/v1/entities/trending/channels?offset=',
             limit)
 
+def json_print(js):
+    print(json.dumps(js, indent=4, sort_keys=True))
+
 minds = MindsAPI('zippypippytippy','Obama08*')
 minds.login()
-r = minds.get_post('876868077506625536').json()
-print(r)
+
+j = minds.get_post('876578164342235136').json()
+json_print(j['activity']['impressions'])
