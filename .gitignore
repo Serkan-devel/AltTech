@@ -1,0 +1,15 @@
+
+image.png
+.DS_Store
+mindsapi/.DS_Store
+mindsapi/build/lib/mindsapi/__init__.py
+mindsapi/build/lib/mindsapi/mindsapi.py
+mindsapi/dist/mindsapi-0.1.1.macosx-10.13-intel.tar.gz
+mindsapi/dist/mindsapi-0.1.2-py2.7.egg
+mindsapi/dist/mindsapi-0.1.2.tar.gz
+mindsapi/mindsapi.egg-info/dependency_links.txt
+mindsapi/mindsapi.egg-info/not-zip-safe
+mindsapi/mindsapi.egg-info/PKG-INFO
+mindsapi/mindsapi.egg-info/SOURCES.txt
+mindsapi/mindsapi.egg-info/top_level.txt
+run.sh
