@@ -1,6 +1,10 @@
 import requests
 import json
+import sys
 from datetime import datetime
+
+def jprint(js):
+    print(json.dumps(js, indent = 4, sort_keys = True))
 
 class MindsAPI:
     default_post = {
@@ -68,6 +72,13 @@ class MindsAPI:
 
         return self.post(data)
 
+    def post_with_attachment(self, guid, message):
+        data = MindsAPI.default_post
+        data['attachment_guid'] = guid
+        data['message'] = message
+
+        return self.post(data)
+
     def post_custom(self, url, message, description, title, thumbnail):
         data = MindsAPI.DefaultPost
         data['url'] = url
@@ -119,17 +130,16 @@ class MindsAPI:
             limit,
             'activity')
 
-def jprint(js):
-    print(json.dumps(js, indent = 4, sort_keys = True))
+    def upload_media(self, image):
+        files = {
+            'file': ('file', image, 'image/png'),
+        }
+        return self.client.post('https://www.minds.com/api/v1/media', files=files)
 
-minds = MindsAPI('zippypippytippy','Obama08*')
+    def post_image(self, message, filename):
+        j = minds.upload_media(open(filename, 'rb')).json()
+        return minds.post_with_attachment(j['guid'], message)
+
+minds = MindsAPI(sys.argv[1], sys.argv[2])
 minds.login()
-
-p = minds.get_post('821506370292424704').json()['activity']
-print('https://www.minds.com/newsfeed/'+ p['guid'] +' '+ str(p['impressions']))
-
-#posts = minds.get_top_posts(20)
-#jprint(posts[0])
-
-#for p in posts:
-#    print('https://www.minds.com/newsfeed/'+ p['guid'] +' '+ str(p['impressions']))
+minds.post_image('', sys.argv[3])
