@@ -140,6 +140,9 @@ class MindsAPI:
         j = minds.upload_media(open(filename, 'rb')).json()
         return minds.post_with_attachment(j['guid'], message)
 
+# USAGE:
+# post_image.py [USERNAME] [PASSWORD] [PATH TO IMAGE]
+
 minds = MindsAPI(sys.argv[1], sys.argv[2])
 minds.login()
 minds.post_image('', sys.argv[3])
