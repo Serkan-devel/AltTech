@@ -21,3 +21,7 @@ mindsapi/dist/mindsapi-0.1.2-py3.7.egg
 mindsapi/install.sh
 mindsapi/notification.json
 octave-workspace
+add_views.py
+add_likes.py
+bot_memory.sav
+loop_views.sh
