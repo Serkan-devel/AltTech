@@ -13,3 +13,11 @@ mindsapi/mindsapi.egg-info/PKG-INFO
 mindsapi/mindsapi.egg-info/SOURCES.txt
 mindsapi/mindsapi.egg-info/top_level.txt
 run.sh
+*.pyc
+minds_bot/bot_memory.sav
+minds_bot/octave-workspace
+mindsapi/bot_memory.sav
+mindsapi/dist/mindsapi-0.1.2-py3.7.egg
+mindsapi/install.sh
+mindsapi/notification.json
+octave-workspace
