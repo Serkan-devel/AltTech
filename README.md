@@ -47,7 +47,7 @@ python setup.py build
 python setup.py install --username
 ```
 
-There might be other dependencies you will have to install, preferably using "pip", such as numpy and oct2py for the calculation function.
+There might be other dependencies you will have to install, preferably using "pip", such as numpy and oct2py for the calculation function or fortune. Check which ones might be missing on your system as you run.
 
 ## Useful Utility Method
 
