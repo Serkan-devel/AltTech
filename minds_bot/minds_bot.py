@@ -108,7 +108,7 @@ while True:
                 print('Done processing command.')
             except:
                 print(traceback.format_exc())
-                api.post_comment(cmd['id'], 'I am here.')
+                api.post_comment(cmd['id'], 'I\'m Mister Meeseeks! Look at me!')
             finally:
                 seen.add(tag['guid'])
                 save_state(STATE_FILE, seen)

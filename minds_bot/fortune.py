@@ -10,6 +10,6 @@ def run(command):
 def fortune(api, cmd):
     f = run("fortune")
     f = f.decode('utf8', 'ignore')
-    f = f.replace('"', '\"').replace("\n", "\n").replace("\t", "\t")
+    f = f.replace('"', '\"')
     response = "@" + cmd['from'] + " " + f
     api.post_comment(cmd['id'], response)

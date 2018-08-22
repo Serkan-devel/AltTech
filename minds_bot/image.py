@@ -12,7 +12,7 @@ def run(command):
 
 def get_image(api, cmd):
     file = 'image.png'
-    run("magick convert -border 10x10 -background black -fill white -font Candice -gravity Center -size 800x400 caption:'"+ cmd['params'] +"' " + file)
+    run("magick convert -border 10x10 -background black -fill white -font Candice -gravity Center -size 800x400 caption:'"+ cmd['params'].replace("'", '’') +"' " + file)
 
     j = api.upload_media(open(file, 'rb'), 'image/png').json()
     api.post_comment(cmd['id'], comment='@'+ cmd['from'] + ' Here is your image.', attachment=j['guid'])
