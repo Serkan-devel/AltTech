@@ -38,6 +38,15 @@ j = minds.post_custom(
 print('https://www.minds.com/newsfeed/'+ j['guid'] +'\n')
 ```
 
+## Installing Minds API Package
+
+Be sure to install the Python module for the Minds API first. Go to the mindsapi directory and run:
+
+```
+python setup.py build
+python setup.py install --username
+```
+
 ## Useful Utility Method
 
 ```
