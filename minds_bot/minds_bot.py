@@ -33,7 +33,7 @@ def parse_notification(tag):
         id = str(tag['entity']['guid'])
 
     from_user = tag['from']['username']
-    match = re.search('@'+ USER_NAME +'\s+([^:]*):(.*)', msg)
+    match = re.search('@'+ USER_NAME +'\s+([^:]*):(.*)', msg, re.IGNORECASE)
 
     if match == None:
         verb = 'default'
