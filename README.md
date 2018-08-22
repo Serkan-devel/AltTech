@@ -47,6 +47,8 @@ python setup.py build
 python setup.py install --username
 ```
 
+There might be other dependencies you will have to install, preferably using "pip", such as numpy and oct2py for the calculation function.
+
 ## Useful Utility Method
 
 ```
