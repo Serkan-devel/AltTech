@@ -60,7 +60,7 @@ def main():
         video_length = int(matches.group(1)) * 3600 + \
                         int(matches.group(2)) * 60 + \
                         int(matches.group(3))
-        print("Video length in seconds: "+str(video_length))
+        print("Video length in seconds: "+ str(video_length))
     else:
         print("Can't determine video length.")
         raise SystemExit
@@ -76,11 +76,11 @@ def main():
         if n == 0:
             split_start = 0
         else:
-            split_start = split_length * n
+            split_start = split_length * n - 10
 
-        split_str += " -ss "+str(split_start)+" -t "+str(split_length) + \
-                    " '"+filename[:-4] + "-" + str(n) + "." + filename[-3:] + \
-                    "'"
+        split_str += " -ss "+ str(split_start)+ " -t "+ str(split_length + 10) + \
+                     " '"+filename[:-4] + "-" + str(n) + "." + filename[-3:] + \
+                     "'"
         print("About to run: "+split_cmd+split_str)
         output = subprocess.Popen(split_cmd+split_str, shell = True, stdout =
                                subprocess.PIPE).stdout.read()
