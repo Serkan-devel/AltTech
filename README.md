@@ -2,6 +2,8 @@
 
 ## Usage Example
 
+Some of these examples might have gotten out of sync with the current code. Will update these.
+
 ```
 minds = MindsAPI('zippypippytippy','Obama08*')
 minds.login()

@@ -25,3 +25,7 @@ add_views.py
 add_likes.py
 bot_memory.sav
 loop_views.sh
+minds_bot/input.aux
+minds_bot/input.log
+minds_bot/input.tex
+minds_bot/texput.log

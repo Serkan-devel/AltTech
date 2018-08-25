@@ -96,7 +96,10 @@ class MindsAPI:
         cont = ""
         while x < limit:
             r = self.client.get(url + cont)
-            j = r.json()
+            try:
+                j = r.json()
+            except:
+                return groups
             if 'load-next' not in j: break
 
             cont = j['load-next']
@@ -179,9 +182,3 @@ class MindsAPI:
             "access_id": 2,
             "comment": comment}
         return self.client.post('https://www.minds.com/api/v1/comments/'+ id, data=data)
-
-'''
-curl 'https://www.minds.com/api/v1/notifications/all?limit=24&offset='
-
-curl 'https://www.minds.com/api/v1/comments/877996319657467904' --data-binary '{"is_rich":0,"title":"","description":"","thumbnail":"","url":"","attachment_guid":null,"mature":0,"access_id":2,"comment":"s"}' --compressed
-'''

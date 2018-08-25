@@ -12,6 +12,8 @@ from fortune import fortune
 from soundcloud import soundcloud
 from giphy import get_gif
 from image import get_image
+from formula import formula
+from meme import meme
 
 # Global configurations.
 STATE_FILE = 'bot_memory.sav'
@@ -33,14 +35,17 @@ def parse_notification(tag):
         id = str(tag['entity']['guid'])
 
     from_user = tag['from']['username']
-    match = re.search('@'+ USER_NAME +'\s+([^:]*):(.*)', msg, re.IGNORECASE)
+    match = re.search(
+        '@'+ USER_NAME +'\s+([^:]*):(.*)',
+        msg,
+        re.MULTILINE | re.DOTALL | re.IGNORECASE)
 
     if match == None:
         verb = 'default'
         params = None
     else:
         verb = match.group(1).lower()
-        params = match.group(2)
+        params = match.group(2).strip()
 
     return {
         'id': id,
@@ -71,10 +76,12 @@ commands = {
     # Keep default in the first spot, as the help output will skip it.
     'default': fortune,
     'calc': calc,
+    'formula': formula,
     'fortune': fortune,
     'gif': get_gif,
     'help': help,
     'image': get_image,
+    'meme': meme,
     'soundcloud': soundcloud
 }
 
