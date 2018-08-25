@@ -92,22 +92,22 @@ def parse_options():
     parser = OptionParser()
     parser.add_option("-f", "--file",
                         dest = "filename",
-                        help = "file to split, for example sample.avi",
+                        help = "File name of the video to split.",
                         type = "string",
                         action = "store")
     parser.add_option("-s", "--split-size",
                         dest = "split_size",
-                        help = "split or chunk size in seconds, for example 10",
+                        help = "Length of each video segment, in seconds.",
                         type = "int",
                         action = "store")
     parser.add_option("-u", "--username",
                         dest = "username",
-                        help = "split or chunk size in seconds, for example 10",
+                        help = "User name of Minds account to post to.,
                         type = "string",
                         action = "store")
     parser.add_option("-p", "--password",
                         dest = "password",
-                        help = "split or chunk size in seconds, for example 10",
+                        help = "Password of Minds account to post to.",
                         type = "string",
                         action = "store")
 
