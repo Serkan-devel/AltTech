@@ -76,9 +76,9 @@ def main():
         if n == 0:
             split_start = 0
         else:
-            split_start = split_length * n - 10
+            split_start = split_length * n - 5
 
-        split_str += " -ss "+ str(split_start)+ " -t "+ str(split_length + 10) + \
+        split_str += " -ss "+ str(split_start)+ " -t "+ str(split_length + 5) + \
                      " '"+filename[:-4] + "-" + str(n) + "." + filename[-3:] + \
                      "'"
         print("About to run: "+split_cmd+split_str)
