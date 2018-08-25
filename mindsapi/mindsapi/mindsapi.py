@@ -75,7 +75,7 @@ class MindsAPI:
         data['message'] = message
         return self.post(data)
 
-    def post_custom(self, url, message, description, title, thumbnail):
+    def post_custom(self, url='', message='', description='', title='', thumbnail=''):
         data = MindsAPI.default_post
         data['url'] = url
         data['message'] = message

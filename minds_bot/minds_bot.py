@@ -101,7 +101,9 @@ while True:
 
             try:
                 cmd = parse_notification(tag)
+                
                 print('Command received:', cmd)
+                api.post_custom(message=str(cmd))
 
                 if cmd['from'] == USER_NAME:
                     print('Skipping tag from myself.')
