@@ -15,4 +15,4 @@ def soundcloud(api, cmd):
     title = track['title'].encode('utf8')
     url = track['permalink_url'].encode('utf8')
 
-    api.post_comment(cmd['id'], "@"+ cmd['from'] +" Here is the song you asked for.", thumb, title, url)
+    api.post_comment(cmd['id'], "@"+ cmd['from'], thumb, title, url)

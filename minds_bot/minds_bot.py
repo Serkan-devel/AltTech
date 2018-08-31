@@ -54,10 +54,8 @@ def parse_notification(tag):
         'params': params }
 
 def help(api, cmd):
-    reply  = 'I am a bot that belongs to @UndeadMockingbird.\n\n'
     reply += 'Available commands:\n'
     reply += str(list(commands.keys())[1:])
-    api.post_comment(cmd['id'], reply)
 
 def load_state(file):
     seen = set()
@@ -101,9 +99,7 @@ while True:
 
             try:
                 cmd = parse_notification(tag)
-                
                 print('Command received:', cmd)
-                api.post_custom(message=str(cmd))
 
                 if cmd['from'] == USER_NAME:
                     print('Skipping tag from myself.')
@@ -117,7 +113,6 @@ while True:
                 print('Done processing command.')
             except:
                 print(traceback.format_exc())
-                api.post_comment(cmd['id'], 'I\'m Mister Meeseeks! Look at me!')
             finally:
                 seen.add(tag['guid'])
                 save_state(STATE_FILE, seen)

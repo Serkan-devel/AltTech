@@ -30,7 +30,7 @@ def formula(api, cmd):
     tex_file.write(tex)
     tex_file.close()
 
-    reply = "@"+ cmd['from'] +" I'm Mr. Meeseeks! Look at me!"
+    reply = "@"+ cmd['from']
 
     try:
         file = "formula.png"

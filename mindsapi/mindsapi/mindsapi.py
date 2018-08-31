@@ -182,3 +182,20 @@ class MindsAPI:
             "access_id": 2,
             "comment": comment}
         return self.client.post('https://www.minds.com/api/v1/comments/'+ id, data=data)
+
+    def get_creation_time(self, username):
+        r = self.client.get('https://www.minds.com/api/v1/channel/'+ username + '?').json()
+        if 'channel' not in r:
+            return None
+        return r['channel']['time_created']
+
+    def get_channel_info(self, username):
+        return self.client.get('https://www.minds.com/api/v1/channel/'+ username + '?')
+
+    def get_username_from_id(self, id):
+        r = self.client.get('https://www.minds.com/api/v1/wire/rewards/'+ id + '?limit=1').json()
+        return r['username']
+        #return r['username']
+
+    def get_wires(self, id):
+        return self.client.get('https://www.minds.com/api/v1/wire/sums/overview/'+ id +'?merchant=0')

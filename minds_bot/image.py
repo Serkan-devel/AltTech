@@ -15,6 +15,6 @@ def get_image(api, cmd):
     run("magick convert -border 15x15 -background black -fill white -font Impact -gravity Center -size 1600x800 caption:'"+ cmd['params'].replace("'", '’') +"' " + file)
 
     j = api.upload_media(open(file, 'rb'), 'image/png').json()
-    api.post_comment(cmd['id'], comment='@'+ cmd['from'] + ' Here is your image.', attachment=j['guid'])
+    api.post_comment(cmd['id'], comment='@'+ cmd['from'], attachment=j['guid'])
 
     os.remove(file)

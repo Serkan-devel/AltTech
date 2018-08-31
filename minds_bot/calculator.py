@@ -26,7 +26,7 @@ def calc(api, cmd):
     except Exception as e:
         rs = str(e)
 
-    reply = 'Beep boop ... your result is:\n' + rs
+    reply = "@"+ cmd['from'] + "\n" + rs
     file = plot + '001.PNG'
 
     try:
