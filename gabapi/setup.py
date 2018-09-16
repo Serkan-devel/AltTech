@@ -1,11 +1,11 @@
 from setuptools import setup
 
-setup(name='mindsapi',
-      version='0.1.3',
-      description='Provides access to Minds REST API',
+setup(name='gabapi',
+      version='0.0.2',
+      description='Provides access to Gab REST API',
       url='http://github.com/undeadmockingbird/AltTech',
       author='Undead Mockingbird',
       author_email='undeadmockingbird@protonmail.com',
       license='MIT',
-      packages=['mindsapi'],
+      packages=['gabapi'],
       zip_safe=False)

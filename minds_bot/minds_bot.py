@@ -21,6 +21,12 @@ POLLING_INTERVAL = 1
 USER_NAME = sys.argv[1]
 PASSWORD = sys.argv[2]
 
+# Groups this bot will respond to.
+GROUPS = [
+    '882608547552555008',
+    '878256097772216320',
+    '623710804813815824']
+
 print("Minds bot by Undead Mockingbird.\n")
 
 def json_print(js):
@@ -47,7 +53,14 @@ def parse_notification(tag):
         verb = match.group(1).lower()
         params = match.group(2).strip()
 
+    group = None
+    if 'params' in tag and 'parent' in tag['params']:
+        group = tag['params']['parent']['container_guid']
+    else:
+        group = tag['entity']['access_id']
+
     return {
+        'group': group,
         'id': id,
         'from': from_user,
         'verb': verb,
@@ -103,6 +116,10 @@ while True:
 
                 if cmd['from'] == USER_NAME:
                     print('Skipping tag from myself.')
+                    continue;
+
+                if cmd['group'] not in GROUPS:
+                    print('Skipping. Not coming from an allowed group.')
                     continue;
 
                 if cmd['verb'] in commands:

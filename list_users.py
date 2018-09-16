@@ -50,7 +50,7 @@ def color(id):
 
 def plot_likes():
     g = Graph(directed=True)
-    edges = [(x, y) for x in LIKES for y in LIKES[x] if x in ID2INFO and y in ID2INFO][:1000]
+    edges = [(x, y) for x in LIKES for y in LIKES[x] if x in ID2INFO and y in ID2INFO][:]
     ids = [i for i in set([x for (x,y) in edges] + [y for (x,y) in edges])]
     g.add_vertices(ids)
     g.add_edges(edges)
@@ -68,17 +68,9 @@ def plot_likes():
         "vertex_size": 5,
         "vertex_label_dist": 1,
         "vertex_label_size": 8,
-        "layout": g.layout_mds()
-        #"layout": g.layout_fruchterman_reingold(repulserad=1*len(g.vs)**3)
-        #"layout": g.layout_fruchterman_reingold(repulserad=(len(g.vs)/3)**3)
-        #"layout": g.layout_fruchterman_reingold(repulserad=10000000000)
-        #"layout": g.layout_kamada_kawai(kkconst=99999999999999)
-        #"layout": g.layout_kamada_kawai(kkconst=99)
-        #"layout": g.layout_drl()
-        #"layout": g.layout_lgl()
+        "layout": g.layout_fruchterman_reingold(repulserad=(len(g.vs)/3)**3)
     }
     file = str(datetime.now()) +'_minds.svg'
-    file = 'minds.svg'
     print('Plotting graph to file: '+ file)
     plot(g, file, **visual_style)
     print('Plotted graph with nodes: '+ str(len(g.vs)))

@@ -30,3 +30,16 @@ minds_bot/input.log
 minds_bot/input.tex
 minds_bot/texput.log
 watch_top_posts.sh
+*.jpg
+*.png
+*.jpeg
+*.otf
+*.ttf
+dates.csv
+dates.txt
+bot_list.txt
+minds.html
+*.png
+*.png
+*.png
+seed_posts.txt

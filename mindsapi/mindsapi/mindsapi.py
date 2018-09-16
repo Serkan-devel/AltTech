@@ -127,13 +127,17 @@ class MindsAPI:
         j = self.upload_media(open(filename, 'rb'), 'image/png').json()
         return self.post_with_attachment(j['guid'], message)
 
+    def post_gif(self, message, filename):
+        j = self.upload_media(open(filename, 'rb'), 'image/gif').json()
+        return self.post_with_attachment(j['guid'], message)
+
     def post_video(self, message, filename):
         j = self.upload_media(open(filename, 'rb'), 'video/mp4').json()
         return self.post_with_attachment(j['guid'], message)
 
     def post_page_view(self, url):
         data = {
-            "url": "/newsfeed/878320253628096512",
+            "url": url,
             "referrer": ""}
         return self.client.post(
             'https://www.minds.com/api/v2/analytics/pageview',
@@ -195,7 +199,12 @@ class MindsAPI:
     def get_username_from_id(self, id):
         r = self.client.get('https://www.minds.com/api/v1/wire/rewards/'+ id + '?limit=1').json()
         return r['username']
-        #return r['username']
 
     def get_wires(self, id):
         return self.client.get('https://www.minds.com/api/v1/wire/sums/overview/'+ id +'?merchant=0')
+
+    def get_personal_feed(self, id, limit=12):
+        return self.get_continuation(
+            'https://www.minds.com/api/v1/newsfeed/personal/'+ str(id) +'?limit='+ str(limit) +'&offset=',
+            limit,
+            'activity')
