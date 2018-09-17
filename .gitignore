@@ -63,3 +63,9 @@ minds_2018-08-29 19:20:35.590235.svg
 minds_2018-08-29 20:24:56.591466.svg
 user_graph.sav
 user_graph.sav.bak
+*.egg
+gabapi/dist/gabapi-0.0.3-py3-none-any.whl
+gabapi/dist/gabapi-0.0.3.tar.gz
+gabapi/build/lib/gabapi/gabapi.py
+gabapi/build/lib/gabapi/gabapi.py
+gabapi/build/lib/gabapi/gabapi.py

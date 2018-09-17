@@ -41,8 +41,14 @@ class GabAPI:
 
     def post_media(self, filename):
         image = open(filename, 'rb')
-        type = 'image/png'
-        files = { 'file': ('file', image, type) }
-        params = { 'token': self.client.cookies['XSRF-TOKEN'] }
-        r =  self.client.post('https://gab.ai/api/media-attachments/images', files = files)
+        files = { 'file': ('file', image, 'image/png') }
+        r =  self.client.post('https://gab.ai/api/media-attachments/images', files=files)
         return r.json()['id']
+
+    def get_notifications(self):
+        params = {
+            "type": "null",
+            "all_types": "1",
+            "includes": "post.conversation_parent"
+        }
+        return self.client.get('https://gab.ai/api/notifications', params=params)
