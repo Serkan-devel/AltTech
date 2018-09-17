@@ -22,10 +22,10 @@ class GabAPI:
             'x-xsrf-token': self.client.cookies['XSRF-TOKEN']
         }
 
-    def post_comment(self, body='', filename=None):
+    def post_comment(self, body='', reply_to='', filename=None):
         post = {
           "body": "<p>"+ body +"</p>",
-          "reply_to": "",
+          "reply_to": reply_to,
           "is_quote": "0",
           "is_html": "1",
           "nsfw": "0",
