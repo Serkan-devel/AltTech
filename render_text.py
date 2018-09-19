@@ -3,10 +3,13 @@ import os
 import sys
 import subprocess
 import random
+import requests
 from os import listdir
 from os.path import isfile, join
 from mindsapi import mindsapi
 from gabapi import gabapi
+import xml.etree.ElementTree as ET
+from requests.auth import HTTPBasicAuth
 
 BACKGROUNDS = 'backgrounds'
 FONTS = 'fonts'
@@ -40,6 +43,28 @@ def render_text(file, text, out, font):
     height = str(int(size.split('x')[1]) * 0.9)
     run("convert {} -set option:modulate:colorspace hsb -modulate 50,120 -size {} -fill white -gravity center -background transparent -font {} label:\"{}\" -composite {}".format(file, width+"x"+height, font, text, out))
 
+class GnuApi:
+    def __init__(self, user, pw):
+        self._base_url = 'https://freezepeach.xyz'
+        self._client = requests.session()
+        self._client.auth = HTTPBasicAuth(user, pw)
+
+    def post_status(self, status):
+        return self._client.post(
+            self._base_url+'/api/qvitter/statuses/update.json',
+            params={"status": status})
+
+    def upload_image(self, path):
+        return self._client.post(
+            self._base_url+'/api/statusnet/media/upload',
+            files={'media': ('media', open(path, 'rb'), 'image/png')})
+
+    def post_image(self, path):
+        r = self.upload_image(path).content.decode('utf8')
+        xml = ET.fromstring(r)
+        url = xml.findall('mediaurl')[0].text
+        return self.post_status(url)
+
 text = get_post_text()
 out = "image_text.jpg"
 
@@ -71,3 +96,9 @@ password = os.environ['GAB_PW']
 api = gabapi.GabAPI(username, password)
 api.login()
 api.post_comment('', out)
+
+username = os.environ['GNU_USER']
+password = os.environ['GNU_PW']
+
+api = GnuApi(username, password)
+api.post_image(out)

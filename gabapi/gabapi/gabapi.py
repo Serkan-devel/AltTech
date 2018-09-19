@@ -22,7 +22,7 @@ class GabAPI:
             'x-xsrf-token': self.client.cookies['XSRF-TOKEN']
         }
 
-    def post_comment(self, body='', reply_to='', filename=None):
+    def post_comment(self, body='', reply_to='', topic='', filename=None):
         post = {
           "body": "<p>"+ body +"</p>",
           "reply_to": reply_to,
@@ -32,7 +32,8 @@ class GabAPI:
           "is_premium": "0",
           "_method": "post",
           "media_attachments": [],
-          "premium_min_tier": 0
+          "premium_min_tier": 0,
+          "topic": topic
         }
         if filename != None:
             post['media_attachments'] = [self.post_media(filename)]

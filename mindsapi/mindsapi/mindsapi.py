@@ -208,3 +208,12 @@ class MindsAPI:
             'https://www.minds.com/api/v1/newsfeed/personal/'+ str(id) +'?limit='+ str(limit) +'&offset=',
             limit,
             'activity')
+
+    def get_blog(self, id):
+        return self.client.get('https://www.minds.com/api/v1/blog/'+id)
+
+    def update_blog(self, id, body):
+        r = self.get_blog(id)
+        jblog = r.json()['blog']
+        jblog['description'] = body
+        return self.client.post('https://www.minds.com/api/v1/blog/'+id, json=jblog)

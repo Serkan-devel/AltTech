@@ -9,9 +9,7 @@ password = os.environ['GAB_PW']
 
 api = gabapi.GabAPI(username, password)
 api.login()
-api.post_comment('<p style="color:red">html test!</p>')
-#api.post_comment('<font color="red">rrrrrr</font>','img.png')
-quit()
+#api.post_comment('This is a message.','img.png')
 
 r = api.get_notifications()
 for n in r.json()['data']:
