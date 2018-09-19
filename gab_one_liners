@@ -1,0 +1,7 @@
+$.getJSON('https://json2jsonp.com/?url='+encodeURIComponent('https://goweather.herokuapp.com/weather/Dallas')+'&callback=?', e=>$.post('https://gab.ai/posts', {body:JSON.stringify(e)}))
+
+$.get('https://random.dog/woof.json').then(e=>$.post('https://gab.ai/posts', {body:e.url.toString()}))
+
+$.get('https://aws.random.cat/meow').then(e=>$.post('https://gab.ai/posts', {body:e.file.toString()}))
+
+javascript:$.post('https://gab.ai/posts', {gif:"l41lHy1XNX3xSeqHu",body:""})
