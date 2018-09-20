@@ -4,6 +4,7 @@ import sys
 import subprocess
 import random
 import requests
+import uuid
 from os import listdir
 from os.path import isfile, join
 from mindsapi import mindsapi
@@ -66,7 +67,8 @@ class GnuApi:
         return self.post_status(url)
 
 text = get_post_text()
-out = "image_text.jpg"
+#out = "image_text.jpg"
+out = str(uuid.uuid4())+'.jpg'
 
 if IMG_URL == None:
     images = [f for f in listdir(BACKGROUNDS) if isfile(join(BACKGROUNDS, f))]
@@ -102,3 +104,5 @@ password = os.environ['GNU_PW']
 
 api = GnuApi(username, password)
 api.post_image(out)
+
+os.remove(out)

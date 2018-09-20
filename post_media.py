@@ -4,12 +4,16 @@ from mindsapi import mindsapi
 
 mime = magic.from_file(sys.argv[3], mime=True)
 
-if mime not in ['image/png', 'image/gif', 'video/mp4']:
+if mime not in ['image/png', 'image/jpeg', 'image/gif', 'video/mp4']:
     print('Unsupported file type.')
     quit()
 
 api = mindsapi.MindsAPI(sys.argv[1], sys.argv[2])
 api.login()
+
+if mime == "image/jpeg":
+    print('Posting image ...')
+    print(api.post_image('', sys.argv[3]))
 
 if mime == "image/png":
     print('Posting image ...')
