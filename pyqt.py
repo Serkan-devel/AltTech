@@ -39,6 +39,7 @@ class App(QWidget):
     @pyqtSlot()
     def on_click(self):
         text = self.textbox.toPlainText()
+        text = text.replace("'", "’")
         #self.api.post_custom(message=text)
         run("echo '"+ text +"' | ./render_text.py ")
         self.textbox.setText("")
