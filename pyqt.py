@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import sys
 from PyQt5.QtWidgets import QTextEdit, QWidget, QApplication, QShortcut, QGridLayout
 from PyQt5.QtGui import QIcon, QKeySequence
