@@ -25,13 +25,10 @@ class MindsAPI:
             self.username = config['minds']['user']
             self.password = config['minds']['password']
 
-
     @staticmethod
     def get_config():
-        config = open(os.environ['HOME']+"/.alt-tech.config", 'rb')
-        config = ''.join([r.decode('utf-8') for r in config.readlines()])
-        config = json.loads(config)
-        return config
+        with open(os.environ['HOME']+"/.alt-tech.config") as f:
+            return json.load(f)
 
     def login(self):
         login_url = 'https://www.minds.com/api/v1/authenticate'
