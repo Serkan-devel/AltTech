@@ -75,3 +75,12 @@ blog_post.html
 minds.svg
 minds_blog.sh
 my_blog.html
+*.txt
+*.gz
+*.whl
+api_wrappers/gabapi/gabapi.egg-info/not-zip-safe
+api_wrappers/mindsapi/mindsapi.egg-info/not-zip-safe
+api_wrappers/mindsapi/mindsapi.egg-info/PKG-INFO
+api_wrappers/gnusocialapi/gnusocialapi.egg-info/not-zip-safe
+api_wrappers/gnusocialapi/gnusocialapi.egg-info/PKG-INFO
+api_wrappers/gabapi/gabapi.egg-info/PKG-INFO
