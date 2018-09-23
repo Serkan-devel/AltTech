@@ -47,7 +47,7 @@ class App(QWidget):
     def on_click(self):
         text = self.textbox.toPlainText()
         text = text.replace("'", "’")
-        run("echo '" + text + "' | ./minds_text2image.py")
+        run("echo '" + text + "' | ./post_text2image.py")
         self.textbox.setPlainText("")
 
 
