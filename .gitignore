@@ -1,86 +1,35 @@
 
-image.png
-.DS_Store
-mindsapi/.DS_Store
-mindsapi/build/lib/mindsapi/__init__.py
-mindsapi/build/lib/mindsapi/mindsapi.py
-mindsapi/dist/mindsapi-0.1.1.macosx-10.13-intel.tar.gz
-mindsapi/dist/mindsapi-0.1.2-py2.7.egg
-mindsapi/dist/mindsapi-0.1.2.tar.gz
-mindsapi/mindsapi.egg-info/dependency_links.txt
-mindsapi/mindsapi.egg-info/not-zip-safe
-mindsapi/mindsapi.egg-info/PKG-INFO
-mindsapi/mindsapi.egg-info/SOURCES.txt
-mindsapi/mindsapi.egg-info/top_level.txt
-run.sh
-*.pyc
-minds_bot/bot_memory.sav
-minds_bot/octave-workspace
-mindsapi/bot_memory.sav
-mindsapi/dist/mindsapi-0.1.2-py3.7.egg
-mindsapi/install.sh
-mindsapi/notification.json
-octave-workspace
-add_views.py
-add_likes.py
-bot_memory.sav
-loop_views.sh
-minds_bot/input.aux
-minds_bot/input.log
-minds_bot/input.tex
-minds_bot/texput.log
-watch_top_posts.sh
 *.jpg
+*.ttf
+*.pyc
+*.otf
 *.png
 *.jpeg
-*.otf
-*.ttf
-dates.csv
-dates.txt
-bot_list.txt
-minds.html
-*.png
-*.png
-*.png
-seed_posts.txt
-gabapi/dist/gabapi-0.0.1-py3.7.egg
-gabapi/dist/gabapi-0.0.2-py3.7.egg
-gabapi/gabapi.egg-info/dependency_links.txt
-gabapi/gabapi.egg-info/not-zip-safe
-gabapi/gabapi.egg-info/PKG-INFO
-gabapi/gabapi.egg-info/SOURCES.txt
-gabapi/gabapi.egg-info/top_level.txt
-minds_2018-08-29 13:11:56.608325.png
-minds_2018-08-29 15:29:48.807275.svg
-minds_2018-08-29 17:14:54.488891.svg
-minds_2018-08-29 19:20:35.590235.svg
-minds_2018-08-29 20:24:56.591466.svg
-mindsapi/dist/mindsapi-0.1.3-py3.7.egg
-minds_2018-08-29 13:11:56.608325.png
-minds_2018-08-29 15:29:48.807275.svg
-minds_2018-08-29 17:14:54.488891.svg
-minds_2018-08-29 19:20:35.590235.svg
-minds_2018-08-29 20:24:56.591466.svg
-user_graph.sav
-user_graph.sav.bak
+backgrounds/.DS_Store
 *.egg
-gabapi/dist/gabapi-0.0.3-py3-none-any.whl
-gabapi/dist/gabapi-0.0.3.tar.gz
-gabapi/build/lib/gabapi/gabapi.py
-gabapi/build/lib/gabapi/gabapi.py
-gabapi/build/lib/gabapi/gabapi.py
-gabapi/build/lib/gabapi/gabapi.py
-889077692124463104.html
-blog_post.html
-minds.svg
-minds_blog.sh
-my_blog.html
-*.txt
 *.gz
-*.whl
-api_wrappers/gabapi/gabapi.egg-info/not-zip-safe
-api_wrappers/mindsapi/mindsapi.egg-info/not-zip-safe
+minds_bot/octave-workspace
+minds_bot/input.tex
+minds_bot/input.log
+minds_bot/input.aux
+minds_bot/bot_memory.sav
+fonts/.DS_Store
+minds_bot/.DS_Store
+api_wrappers/mindsapi/mindsapi.egg-info/top_level.txt
+api_wrappers/mindsapi/mindsapi.egg-info/SOURCES.txt
 api_wrappers/mindsapi/mindsapi.egg-info/PKG-INFO
-api_wrappers/gnusocialapi/gnusocialapi.egg-info/not-zip-safe
+api_wrappers/mindsapi/mindsapi.egg-info/not-zip-safe
+api_wrappers/mindsapi/mindsapi.egg-info/dependency_links.txt
+api_wrappers/mindsapi/.DS_Store
+api_wrappers/gnusocialapi/gnusocialapi.egg-info/top_level.txt
+api_wrappers/gnusocialapi/gnusocialapi.egg-info/SOURCES.txt
 api_wrappers/gnusocialapi/gnusocialapi.egg-info/PKG-INFO
+api_wrappers/gnusocialapi/gnusocialapi.egg-info/not-zip-safe
+api_wrappers/gnusocialapi/gnusocialapi.egg-info/dependency_links.txt
+api_wrappers/gabapi/gabapi.egg-info/top_level.txt
+api_wrappers/gabapi/gabapi.egg-info/SOURCES.txt
 api_wrappers/gabapi/gabapi.egg-info/PKG-INFO
+api_wrappers/gabapi/gabapi.egg-info/not-zip-safe
+api_wrappers/gabapi/gabapi.egg-info/dependency_links.txt
+api_wrappers/gabapi/dist/gabapi-0.0.3-py3-none-any.whl
+api_wrappers/.DS_Store
