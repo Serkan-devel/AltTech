@@ -1,4 +1,6 @@
 import requests
+import json
+import os
 
 class MindsAPI:
     default_post = {
@@ -17,6 +19,13 @@ class MindsAPI:
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+    @staticmethod
+    def get_config():
+        config = open(os.environ['HOME']+"/.alt-tech.config", 'rb')
+        config = ''.join([r.decode('utf-8') for r in config.readlines()])
+        config = json.loads(config)
+        return config
 
     def login(self):
         login_url = 'https://www.minds.com/api/v1/authenticate'
