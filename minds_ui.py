@@ -1,16 +1,22 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
+from PyQt5.QtWidgets import\
+    QApplication,\
+    QWidget,\
+    QPlainTextEdit,\
+    QGridLayout,\
+    QShortcut
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtCore import pyqtSlot
 from mindsapi import mindsapi
-import os
 import sys
 import subprocess
-import json
+
 
 def run(cmd):
     result = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     return result.stdout.readline().decode('utf8')
+
 
 class App(QWidget):
     def __init__(self):
@@ -34,16 +40,16 @@ class App(QWidget):
         grid.addWidget(self.textbox)
         self.setLayout(grid)
 
-        self.setGeometry(100, 100, 400, 300)
+        self.setGeometry(100, 100, 300, 200)
         self.show()
 
     @pyqtSlot()
     def on_click(self):
         text = self.textbox.toPlainText()
         text = text.replace("'", "’")
-        #self.api.post_custom(message=text)
-        run("echo '"+ text +"' | ./render_text.py ")
-        self.textbox.setText("")
+        run("echo '" + text + "' | ./minds_text2image.py")
+        self.textbox.setPlainText("")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

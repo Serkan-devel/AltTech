@@ -16,9 +16,15 @@ class MindsAPI:
         "access_id": 2
     }
 
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+    def __init__(self, username=None, password=None):
+        if username != None and password != None:
+            self.username = username
+            self.password = password
+        else:
+            config = MindsAPI.get_config()
+            self.username = config['minds']['user']
+            self.password = config['minds']['password']
+
 
     @staticmethod
     def get_config():
@@ -33,35 +39,29 @@ class MindsAPI:
         self.client.get(login_url)
         c = self.client.cookies
         headers = {
-            'cookie': 'loggedin=1; minds='+ c['minds'] +'; XSRF-TOKEN='+ c['XSRF-TOKEN'],
+            'cookie': 'loggedin=1; minds=' + c['minds'] + '; XSRF-TOKEN=' + c['XSRF-TOKEN'],
             'x-xsrf-token': c['XSRF-TOKEN']
         }
         login_data = {
-            'username' : self.username,
-            'password' : self.password,
-            'x-xsrf-token' : c['XSRF-TOKEN']
+            'username': self.username,
+            'password': self.password,
+            'x-xsrf-token': c['XSRF-TOKEN']
         }
-        r = self.client.post(login_url, data = login_data, headers = headers)
+        self.client.post(login_url, data=login_data, headers=headers)
         c = self.client.cookies
         self.client.headers = {
-            'cookie': 'loggedin=1; minds='+ c['minds'] +'; XSRF-TOKEN='+ c['XSRF-TOKEN'],
+            'cookie': 'loggedin=1; minds=' + c['minds'] + '; XSRF-TOKEN=' + c['XSRF-TOKEN'],
             'x-xsrf-token': c['XSRF-TOKEN']
         }
 
-    def get_notifications(self):
-        return self.client.get('https://www.minds.com/api/v1/notifications/all')
-
-    def get_channel(self, name):
-        return self.client.get('https://www.minds.com/api/v1/channel/'+ name)
-
     def get_preview(self, url):
-        return self.client.get('https://www.minds.com/api/v1/newsfeed/preview?url='+ url)
+        return self.client.get('https://www.minds.com/api/v1/newsfeed/preview?url=' + url)
 
     def get_post(self, id):
-        return self.client.get('https://www.minds.com/api/v1/newsfeed/single/'+ id)
+        return self.client.get('https://www.minds.com/api/v1/newsfeed/single/' + id)
 
     def post(self, data):
-        return self.client.post('https://www.minds.com/api/v1/newsfeed', data = data)
+        return self.client.post('https://www.minds.com/api/v1/newsfeed', data=data)
 
     def post_with_preview(self, url, message):
         j = self.get_preview(url).json()
@@ -94,10 +94,10 @@ class MindsAPI:
         return self.post(data)
 
     def get_group(self, id):
-        return self.client.get('https://www.minds.com/api/v1/groups/group/'+ id)
+        return self.client.get('https://www.minds.com/api/v1/groups/group/' + id)
 
     def get_channel(self, name):
-        return self.client.get('https://www.minds.com/api/v1/channel/'+ name)
+        return self.client.get('https://www.minds.com/api/v1/channel/' + name)
 
     def get_continuation(self, url, limit, array):
         groups = list()
@@ -203,23 +203,25 @@ class MindsAPI:
         return r['channel']['time_created']
 
     def get_channel_info(self, username):
-        return self.client.get('https://www.minds.com/api/v1/channel/'+ username + '?')
+        return self.client.get('https://www.minds.com/api/v1/channel/' + username + '?')
 
     def get_username_from_id(self, id):
-        r = self.client.get('https://www.minds.com/api/v1/wire/rewards/'+ id + '?limit=1').json()
+        r = self.client.get('https://www.minds.com/api/v1/wire/rewards/' + id + '?limit=1').json()
         return r['username']
 
     def get_wires(self, id):
-        return self.client.get('https://www.minds.com/api/v1/wire/sums/overview/'+ id +'?merchant=0')
+        return self.client.get(
+        'https://www.minds.com/api/v1/wire/sums/overview/' + id + '?merchant=0')
 
     def get_personal_feed(self, id, limit=12):
         return self.get_continuation(
-            'https://www.minds.com/api/v1/newsfeed/personal/'+ str(id) +'?limit='+ str(limit) +'&offset=',
+            'https://www.minds.com/api/v1/newsfeed/personal/' +
+            str(id) + '?limit=' + str(limit) + '&offset=',
             limit,
             'activity')
 
     def get_blog(self, id):
-        return self.client.get('https://www.minds.com/api/v1/blog/'+id)
+        return self.client.get('https://www.minds.com/api/v1/blog/' + id)
 
     def update_blog(self, id, body):
         r = self.get_blog(id)

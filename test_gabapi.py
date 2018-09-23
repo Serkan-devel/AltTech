@@ -1,7 +1,6 @@
 import json
 import os
 import requests
-import sys
 from gabapi import gabapi
 
 username = os.environ['GAB_USER']
