@@ -8,12 +8,16 @@ abstraction of each site's API.
 
 ## Installation
 
-The API wrappers from the directory api_wrappers can each be
+The API wrappers from the directory ``api_wrappers`` can each be
 installed with the ``install.sh`` script from each top level.
+Afterwards, one should be able to import each module from Python
+like a regular module.
 
 ## Usage Example
 
 ```
+from mindsapi import mindsapi
+
 api = mindsapi.MindsAPI('username', 'password')
 api.login()
 api.post_custom(message='Test!')
