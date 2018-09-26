@@ -1,0 +1,12 @@
+{
+"companyName": "DefaultCompany",
+"productName": "New Unity Project",
+"dataUrl": "Roll a Ball Web Edition.data.unityweb",
+"wasmCodeUrl": "Roll a Ball Web Edition.wasm.code.unityweb",
+"wasmFrameworkUrl": "Roll a Ball Web Edition.wasm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
