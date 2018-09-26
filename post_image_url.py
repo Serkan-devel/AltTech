@@ -1,7 +1,8 @@
+#!/bin/env python3
 import json
 import sys
 from datetime import datetime
-import mindsapi
+from mindsapi import mindsapi
 
 # USAGE:
 # post_image.py [USERNAME] [PASSWORD] [PATH TO IMAGE]
